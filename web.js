@@ -1,15 +1,16 @@
+// Load the http module to create an http server.
+var http = require('http');
+
 var static = require('node-static');
- 
-//
-// Create a node-static server instance to serve the './app' folder
-//
-var file = new(static.Server)('app');
-var port = process.env.PORT || 5000;
-require('http').createServer(function (request, response) {
-    request.addListener('end', function () {
-        //
-        // Serve files!
-        //
-        file.serve(request, response);
-    });
-}).listen(port);
+
+// Configure our HTTP server to respond with Hello World to all requests.
+var file = new(static.Server)('app/');
+var server = http.createServer(function (request, response) {
+  file.serve(request, response);
+});
+
+// Listen on port 8000, IP defaults to 127.0.0.1
+server.listen(5000);
+
+// Put a friendly message on the terminal
+console.log("Server running at http://127.0.0.1:8000/");
