@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var lillyApp = angular.module('lillyApp', []);
+var lillyApp = angular.module('myApp', []);
 
 lillyApp.
   controller('InstagramListCtrl', [function( $scope ) {
