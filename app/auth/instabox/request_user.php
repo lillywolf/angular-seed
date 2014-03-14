@@ -1,3 +1,7 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>	
+<body>
 <?php
 
 $clientId = "c171e68d9fb74f4b9d0f2a2d1a4f82e6";
@@ -6,3 +10,4 @@ $url = 'https://api.instagram.com/oauth/authorize/?client_id=" . $clientId . "&r
 header("Location: " . $url);
 
 ?>
+</body>
