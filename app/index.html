@@ -1,19 +1,87 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="lillyApp">
 <head>
   <meta charset="utf-8">
-  <title>My AngularJS App</title>
+  <title>Lilly Wolf</title>
   <link rel="stylesheet" href="css/app.css"/>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+  <script type="text/javascript">
+
+	$(document).ready(function() { 
+		var containerId = "diagonals";
+		var containerWidth = $('#' + containerId).width();
+		var containerHeight = $('#' + containerId).height();
+		drawDiagonals(containerId, 4, 0, 0, containerWidth + 200, containerWidth, 0, containerWidth * 2, "#DCF0F2", "#D9F7FF", 0, true);
+    	drawDiagonals(containerId, 22, 16, 0, containerHeight, 0, 300, 0, "#9CD9E8", "#D9F7FF", 0, false);
+	});	
+	
+	function drawDiagonals(containerId, ySpacing, yWidth, startY, endY, startX, heightRange, minHeight, firstColor, secondColor, pColor, right) {
+		var c = $("#" + containerId)[0];			
+		var ctx = c.getContext("2d");	
+		if (ySpacing == 0 && yWidth == 0) { return; }
+		while (startY < endY) {
+			drawDiagonal(ctx, startX, startY, yWidth, heightRange, minHeight, (pColor > Math.random() ? secondColor : firstColor), right);
+			startY = startY + yWidth + ySpacing;
+		}
+	}
+	
+	function drawDiagonal(ctx, startX, startY, thickness, heightRange, minHeight, fillColor, right) {		
+		var diagonalLength = minHeight + Math.random() * heightRange;		
+		ctx.beginPath();
+		ctx.lineWidth = "1";		
+		ctx.strokeStyle = fillColor;
+		ctx.fillStyle = fillColor;
+		ctx.beginPath();
+		ctx.moveTo(startX, startY);	
+		ctx.lineTo(startX + (right ? -diagonalLength : diagonalLength), startY - diagonalLength);
+		ctx.lineTo(startX + (right ? -diagonalLength : diagonalLength), startY - diagonalLength + thickness);
+		ctx.lineTo(startX, startY + thickness);
+		ctx.lineTo(startX, startY);
+		ctx.closePath();
+		ctx.stroke();
+		ctx.fill();
+	}
+  </script>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
 
-  <div ng-view></div>
+  <!--div>Angular seed app: v<span app-version></span></div-->
 
-  <div>Angular seed app: v<span app-version></span></div>
+	<!--p>1 + 2 = {{ 1 + 5 }}</p-->
+	
+	<canvas height="1600px" width="1200px" id="diagonals">
+	</canvas>
+	
+	<div id="header">
+		<div id="logo">LILLYWOLF</div>
+		<div id="subtext">POP MUSIC FOR POP MUSIC SNOBS</div>
+	</div>	
+	
+	<ul class="menu">
+    	<li><a href="#/view1">SHOWS</a></li>
+    	<li><a href="#/view2">PHOTOS</a></li>
+    	<li><a href="#/view2">PRESS</a></li>
+    	<li><a href="#/view2">CONTACT</a></li>
+  	</ul>
+
+	<div ng-view></div>
+	
+	<div id="container" class="js-packery" 
+		data-packery-options='{ 
+			"itemSelector": ".item", 
+			"gutter": 10,
+			"columnWidth": 60 }'>
+		<div class="item">
+			Things in a sq
+		</div>
+		<div class="item w2">
+			Things in a w2 sq
+		</div>
+		<div class="item"></div>
+	</div>	
+			
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -25,5 +93,6 @@
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
+  <script src="bower_components/packery/packery.pkgd.min.js"></script>
 </body>
 </html>

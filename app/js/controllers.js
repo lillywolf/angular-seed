@@ -2,9 +2,13 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
+var lillyApp = angular.module('lillyApp', []);
 
+lillyApp.
+  controller('InstagramListCtrl', [function( $scope ) {
+	$scope.instagrams = [
+		
+	];
   }])
   .controller('MyCtrl2', [function() {
 
