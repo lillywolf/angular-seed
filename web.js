@@ -20,7 +20,7 @@ app.use(logfmt.requestLogger());
 // 		file.serve(req, res);
 // });
 
-app.use('/app', app.router);
+app.use('/app', express.static(__dirname + '/app'));
 
 var port = Number(process.env.PORT || 5000);
 
