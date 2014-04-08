@@ -3,7 +3,7 @@ var http = require('http');
 
 var static = require('node-static');
 var express = require('express');
-var logfmt = require("logfmt");
+var logfmt = require('logfmt');
 
 var app = express();
 
