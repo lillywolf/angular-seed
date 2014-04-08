@@ -13,14 +13,14 @@ var app = express();
 //   file.serve(request, response);
 // });
 
-app.use(logfmt.requestLogger());
+// app.use(logfmt.requestLogger());
 
 // app.get('/', function(req, res) {
 //   	res.send('Hello World!');
 // 		file.serve(req, res);
 // });
 
-app.use('/app', express.static(__dirname + '/app'));
+app.use(express.static(__dirname + '/app'));
 
 var port = Number(process.env.PORT || 5000);
 
