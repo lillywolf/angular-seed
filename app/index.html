@@ -21,7 +21,10 @@
 			<div ng-repeat="box in boxes" class="item {{box.class}}" lilly-packery>
 				<div class="animate-switch-container" ng-switch on="box.type">
 					<div ng-switch-when="instagram">
-						<img ng-src="{{box.url}}"/>
+						<div class="crop">
+							<img ng-src="{{box.url}}"/>
+						</div>	
+						<div class="caption">{{box.caption}}</div>
 					</div>
 					<div ng-switch-default>
 						Not implemented!
